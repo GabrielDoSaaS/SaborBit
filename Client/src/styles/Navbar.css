@@ -1,0 +1,113 @@
+:root {
+  --primary-purple: #6a0dad;
+  --secondary-purple: #8a2be2;
+  --light-purple: #f3e9ff;
+  --text-dark: #333;
+  --text-light: #fff;
+  --background-gray: #f8f9fa;
+  --border-color: #ddd;
+}
+
+.navbar {
+  width: 100%;
+  background-color: var(--text-light);
+  border-bottom: 1px solid var(--border-color);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  padding: 1rem 0;
+  font-family: Arial, sans-serif;
+}
+
+.navbar-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.navbar-brand {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: var(--primary-purple);
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.navbar-brand:hover {
+  color: var(--secondary-purple);
+}
+
+
+.navbar-links {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+
+.navbar-link {
+  color: var(--text-dark);
+  text-decoration: none;
+  font-weight: 500;
+  padding: 8px 12px;
+  border-radius: 6px;
+  transition: all 0.3s ease;
+}
+
+.navbar-link:hover {
+  color: var(--secondary-purple);
+  background-color: var(--light-purple);
+}
+
+.navbar-link-highlight {
+  color: var(--text-light);
+  background-color: var(--secondary-purple);
+  padding: 8px 16px;
+  border-radius: 6px;
+  text-decoration: none;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
+}
+
+.navbar-link-highlight:hover {
+  background-color: var(--primary-purple);
+}
+
+.navbar-button-logout {
+  padding: 8px 16px;
+  background-color: #e53e3e;
+  color: var(--text-light);
+  border: none;
+  border-radius: 6px;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.navbar-button-logout:hover {
+  background-color: #c53030;
+}
+
+@media (max-width: 768px) {
+  .navbar-container {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .navbar-brand {
+    margin-bottom: 1rem;
+  }
+
+  .navbar-links {
+    flex-direction: column;
+    width: 100%;
+    gap: 10px;
+  }
+
+  .navbar-link, .navbar-link-highlight, .navbar-button-logout {
+    width: 100%;
+    text-align: center;
+  }
+}

@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useAuth } from '../components/auth/AuthContext';
 import InputField from '../components/common/InputField';
 import Button from '../components/common/Button';
+import '../styles/LoginPage.css';
 
 interface LoginPageProps {
   navigate: (path: string) => void;
@@ -48,34 +49,34 @@ const LoginPage: React.FC<LoginPageProps> = ({ navigate, showMessage }) => {
   };
 
   return (
-    <div className="page-container">
-      <div className="form-card">
-        <h2 className="form-heading">Login Chef</h2>
-        <form onSubmit={handleSubmit}>
-          <InputField 
-            label="Email" 
-            type="email" 
-            name="email" 
-            value={formData.email} 
-            onChange={handleChange} 
-            placeholder="seu@email.com" 
-            required 
+    <div className="login-page-container">
+      <div className="login-card">
+        <h2 className="login-title">Login Chef</h2>
+        <form onSubmit={handleSubmit} className="login-form">
+          <InputField
+            label="Email"
+            type="email"
+            name="email"
+            value={formData.email}
+            onChange={handleChange}
+            placeholder="seu@email.com"
+            required
           />
-          <InputField 
-            label="Senha" 
-            type="password" 
-            name="password" 
-            value={formData.password} 
-            onChange={handleChange} 
-            placeholder="********" 
-            required 
+          <InputField
+            label="Senha"
+            type="password"
+            name="password"
+            value={formData.password}
+            onChange={handleChange}
+            placeholder="********"
+            required
           />
-          <Button type="submit" className="w-full mt-6" disabled={loading}>
+          <Button type="submit" className="login-button" disabled={loading}>
             {loading ? 'Entrando...' : 'Entrar'}
           </Button>
         </form>
-        <p className="form-footer-text">
-          Não tem uma conta? <a href="/register" className="form-footer-link">Registre-se aqui</a>
+        <p className="login-footer-text">
+          Não tem uma conta? <a href="/register" className="login-link">Registre-se aqui</a>
         </p>
       </div>
     </div>

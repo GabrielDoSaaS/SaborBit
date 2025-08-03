@@ -1,4 +1,5 @@
 import React from 'react';
+import '../../styles/InputField.css';
 
 interface InputFieldProps {
   label: string;
@@ -13,21 +14,21 @@ interface InputFieldProps {
   className?: string;
 }
 
-const InputField: React.FC<InputFieldProps> = ({ 
-  label, 
-  type = 'text', 
-  name, 
-  value, 
-  onChange, 
-  placeholder, 
-  required = false, 
-  onFileChange, 
+const InputField: React.FC<InputFieldProps> = ({
+  label,
+  type = 'text',
+  name,
+  value,
+  onChange,
+  placeholder,
+  required = false,
+  onFileChange,
   filePreview,
   className = ''
 }) => (
   <div className={`input-group ${className}`}>
     <label htmlFor={name} className="input-label">
-      {label} {required && <span className="text-red-500">*</span>}
+      {label} {required && <span className="input-required">*</span>}
     </label>
     {type === 'file' ? (
       <>
@@ -37,7 +38,7 @@ const InputField: React.FC<InputFieldProps> = ({
           name={name}
           onChange={onFileChange}
           required={required}
-          className="input-field"
+          className="input-field input-file"
           accept="image/*"
         />
         {filePreview && (

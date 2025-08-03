@@ -83,7 +83,6 @@ const App: React.FC = () => {
   return (
     <AuthContext.Provider value={{ chef, login, logout, updateChef }}>
       <style>{`
-        /* Todos os estilos CSS do original */
       `}</style>
       <Navbar />
       {renderPage()}

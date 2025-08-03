@@ -1,6 +1,7 @@
 import React from 'react';
 import { useAuth } from './auth/AuthContext';
 import Button from './common/Button';
+import '../styles/Navbar.css'; 
 
 const Navbar: React.FC = () => {
   const { chef, logout } = useAuth();
@@ -15,12 +16,12 @@ const Navbar: React.FC = () => {
           {chef ? (
             <>
               <a href="/dashboard" className="navbar-link">Dashboard</a>
-              <Button onClick={logout} className="btn-red">Sair</Button>
+              <Button onClick={logout} className="navbar-button-logout">Sair</Button>
             </>
           ) : (
             <>
               <a href="/login" className="navbar-link">Login</a>
-              <a href="/register" className="navbar-link">Registrar</a>
+              <a href="/register" className="navbar-link-highlight">Registrar</a>
             </>
           )}
         </div>
