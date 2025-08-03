@@ -63,8 +63,8 @@ const checkSubscription = async (req, res, next) => {
 routes.post('/beAChef', RegisterController.registerChef);
 routes.post('/loginChef', LoginController.loginChef);
 routes.post('/mercadopago/webhook', PlanController.handleMercadoPagoWebhook);
-routes.post('/planMensal', PlanController.criarPlanoMensal);
-routes.post('/planAnual', PlanController.criarPlanoAnual);
+routes.post('/planMensal', PlanController.createMonthlyPlan);
+routes.post('/planAnual', PlanController.createAnnualPlan);
 
 routes.get('/chefs/:chefId', async (req, res) => {
   try {

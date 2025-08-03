@@ -3,7 +3,7 @@ const Chef = require('../Models/Chef');
 const moment = require('moment'); 
 
 const client = new MercadoPagoConfig({
-    accessToken: MERCADOPAGO_TOKEN.process.env,
+    accessToken: process.env.MERCADOPAGO_TOKEN,
     options: {
         timeout: 5000
     }
