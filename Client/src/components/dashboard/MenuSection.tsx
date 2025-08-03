@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import type { MenuItem } from '../../types/types';
 import Button from '../common/Button';
 import InputField from '../common/InputField';

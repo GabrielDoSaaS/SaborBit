@@ -1,5 +1,4 @@
-import React, { useState } from 'react';
-import { useAuth } from '../auth/AuthContext';
+import React from 'react';
 import InputField from '../common/InputField';
 import Button from '../common/Button';
 import type { Chef } from '../../types/types';
