@@ -50,7 +50,8 @@ cd Server
 npm install
 
 # Inicie o servidor em localhost
-node index.js
+node index.js ```
+
 
 ## 📡 API Reference
 
