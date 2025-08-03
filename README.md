@@ -69,17 +69,30 @@ node index.js
 {
   message: "Login successful",
   chef: {
-    name: string;
-    email: string;
-    phone: string;
-    address: string;
-    restaurantName: string;
-    planoAtivo: boolean;
-    dataExpiracaoPlano: Date;
-    createdAt: Date;
-    profilePicture?: string | undefined;
-    qrCodeUrl?: string | undefined;
+    "name": string;
+    "email": string;
+    "phone": string;
+    "address": string;
+    "restaurantName": string;
+    "planoAtivo": boolean;
+    "dataExpiracaoPlano": Date;
+    "createdAt": Date;
+    "profilePicture"?: string | undefined;
+    "qrCodeUrl"?: string | undefined;
     _id: Types.ObjectId;
   }
 }
+
+```
+`POST /api/beAChef`
+```json
+// Request
+{
+  "name": "your name",
+  "email": "restaurante@exemplo.com",
+  "password": "senha123",
+  "phone": "your phone",
+  "address": "your address"
+}
+
 
