@@ -1,6 +1,7 @@
 # SaborBit 🍽️
 
 **SaborBit** é um SaaS dedicado a ajudar restaurantes a terem seu próprio cardápio online através de QR Codes e facilitar pedidos via WhatsApp.
+**O projeto está no ar** acesse:  https://saborbit-1.onrender.com/
 
 ## ✨ Funcionalidades
 
@@ -30,7 +31,7 @@
 - ![Mercado Pago](https://img.shields.io/badge/-Mercado_Pago-00B1EA)
 - ![WhatsApp](https://img.shields.io/badge/-WhatsApp-25D366?logo=whatsapp&logoColor=white)
 
-## 🛠️ Instalação
+## 🛠️ Instalação na máquina
 
 ```bash
 # Clone o repositório
