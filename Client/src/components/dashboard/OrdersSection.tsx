@@ -1,6 +1,7 @@
 import React from 'react';
 import type { Order } from '../../types/types';
 import Button from '../common/Button';
+import '../../styles/OrdersSection.css';
 
 interface OrdersSectionProps {
   orders: Order[];
@@ -22,8 +23,8 @@ const OrdersSection: React.FC<OrdersSectionProps> = ({
   setShowModal
 }) => {
   return (
-    <div className="orders-section">
-      <h2 className="section-heading">Meus Pedidos</h2>
+    <div className="orders-section-container">
+      <h2 className="orders-section-heading">Meus Pedidos</h2>
       {loading ? (
         <p className="loading-text">Carregando pedidos...</p>
       ) : orders.length === 0 ? (
@@ -31,23 +32,23 @@ const OrdersSection: React.FC<OrdersSectionProps> = ({
       ) : (
         <div className="orders-table-container">
           <table className="orders-table">
-            <thead className="table-header">
+            <thead className="orders-table-header">
               <tr>
-                <th className="table-th">ID do Pedido</th>
-                <th className="table-th">Cliente</th>
-                <th className="table-th">Total</th>
-                <th className="table-th">Status</th>
-                <th className="table-th">Data</th>
-                <th className="table-th">Ações</th>
+                <th className="orders-table-th">ID do Pedido</th>
+                <th className="orders-table-th">Cliente</th>
+                <th className="orders-table-th">Total</th>
+                <th className="orders-table-th">Status</th>
+                <th className="orders-table-th">Data</th>
+                <th className="orders-table-th">Ações</th>
               </tr>
             </thead>
             <tbody>
               {orders.map((order) => (
-                <tr key={order._id} className="table-row">
-                  <td className="table-td">{order._id.substring(0, 8)}...</td>
-                  <td className="table-td">{order.clientName}</td>
-                  <td className="table-td">R$ {order.total.toFixed(2)}</td>
-                  <td className="table-td">
+                <tr key={order._id} className="orders-table-row">
+                  <td className="orders-table-td">{order._id.substring(0, 8)}...</td>
+                  <td className="orders-table-td">{order.clientName}</td>
+                  <td className="orders-table-td">R$ {order.total.toFixed(2)}</td>
+                  <td className="orders-table-td">
                     <span className={`status-badge ${
                       order.status === 'pending' ? 'status-pending' :
                       order.status === 'preparing' ? 'status-preparing' :
@@ -56,18 +57,18 @@ const OrdersSection: React.FC<OrdersSectionProps> = ({
                       {order.status}
                     </span>
                   </td>
-                  <td className="table-td">{new Date(order.orderDate).toLocaleDateString('pt-BR')}</td>
-                  <td className="table-td table-actions">
-                    <Button onClick={() => onViewDetails(order)} className="btn-blue btn-xs">
+                  <td className="orders-table-td">{new Date(order.orderDate).toLocaleDateString('pt-BR')}</td>
+                  <td className="orders-table-td orders-table-actions">
+                    <Button onClick={() => onViewDetails(order)} className="orders-btn-details">
                       Ver Detalhes
                     </Button>
                     {order.status === 'pending' && (
-                      <Button onClick={() => onUpdateStatus(order._id, 'preparing')} className="btn-indigo btn-xs">
+                      <Button onClick={() => onUpdateStatus(order._id, 'preparing')} className="orders-btn-preparing">
                         Marcar como Preparando
                       </Button>
                     )}
                     {order.status === 'preparing' && (
-                      <Button onClick={() => onUpdateStatus(order._id, 'delivered')} className="btn-green btn-xs">
+                      <Button onClick={() => onUpdateStatus(order._id, 'delivered')} className="orders-btn-delivered">
                         Marcar como Entregue
                       </Button>
                     )}
@@ -107,7 +108,7 @@ const OrdersSection: React.FC<OrdersSectionProps> = ({
               </ul>
             </div>
             <div className="modal-actions">
-              <Button onClick={() => setShowModal(false)} className="btn-blue">
+              <Button onClick={() => setShowModal(false)} className="modal-close-btn">
                 Fechar
               </Button>
             </div>

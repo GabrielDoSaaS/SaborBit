@@ -1,0 +1,173 @@
+:root {
+  --primary-purple: #6a0dad;
+  --secondary-purple: #8a2be2;
+  --light-purple: #f3e9ff;
+  --text-dark: #333;
+  --text-light: #fff;
+  --background-gray: #f8f9fa;
+  --border-color: #ddd;
+  --shadow-color: rgba(0, 0, 0, 0.1);
+  --status-active-green: #28a745;
+  --status-inactive-red: #dc3545;
+}
+
+.plans-section-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.plans-section-heading {
+  font-size: 1.8rem;
+  color: var(--primary-purple);
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+
+.plan-status-card {
+  background-color: var(--text-light);
+  border-radius: 12px;
+  padding: 20px;
+  margin-bottom: 30px;
+  box-shadow: 0 2px 10px var(--shadow-color);
+  text-align: center;
+}
+
+.plan-status-text {
+  font-size: 1.2rem;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.plan-status-active {
+  color: var(--status-active-green);
+}
+
+.plan-status-inactive {
+  color: var(--status-inactive-red);
+}
+
+.plan-expiration-text {
+  font-size: 1rem;
+  color: #666;
+}
+
+.plan-inactive-message {
+  font-size: 0.9rem;
+  color: var(--status-inactive-red);
+  margin-top: 15px;
+  font-weight: 500;
+}
+
+.plans-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 30px;
+  justify-content: center;
+}
+
+.plan-card {
+  background-color: var(--text-light);
+  border-radius: 12px;
+  padding: 30px;
+  box-shadow: 0 4px 15px var(--shadow-color);
+  text-align: center;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.plan-card-annual .plan-badge {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  background-color: var(--status-active-green);
+  color: var(--text-light);
+  padding: 5px 10px;
+  border-radius: 5px;
+  font-size: 0.8rem;
+  font-weight: bold;
+}
+
+.plan-title {
+  font-size: 1.8rem;
+  color: var(--primary-purple);
+  margin-bottom: 10px;
+}
+
+.plan-price {
+  font-size: 2.5rem;
+  font-weight: bold;
+  color: var(--secondary-purple);
+  margin-bottom: 15px;
+}
+
+.plan-price-suffix {
+  font-size: 1rem;
+  font-weight: normal;
+  color: #666;
+}
+
+.plan-description {
+  font-size: 1rem;
+  color: #666;
+  margin-bottom: 20px;
+  min-height: 40px;
+}
+
+.plan-features-list {
+  list-style: none;
+  padding: 0;
+  margin-bottom: 30px;
+  text-align: left;
+}
+
+.plan-feature-item {
+  display: flex;
+  align-items: center;
+  font-size: 1rem;
+  color: var(--text-dark);
+  margin-bottom: 10px;
+}
+
+.plan-feature-icon {
+  color: var(--status-active-green);
+  margin-right: 10px;
+  font-weight: bold;
+}
+
+.plan-button {
+  width: 100%;
+  padding: 12px;
+  background-color: var(--secondary-purple);
+  color: var(--text-light);
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.plan-button:hover {
+  background-color: var(--primary-purple);
+}
+
+.plan-button-highlight {
+  background-color: var(--primary-purple);
+}
+
+.plan-button-highlight:hover {
+  background-color: var(--secondary-purple);
+}
+
+.plan-button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+@media (max-width: 768px) {
+  .plans-grid {
+    grid-template-columns: 1fr;
+  }
+}

@@ -1,4 +1,5 @@
 import React from 'react';
+import '../../styles/TabButton.css';
 
 interface TabButtonProps {
   label: string;

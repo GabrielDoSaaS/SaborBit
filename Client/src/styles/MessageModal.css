@@ -1,0 +1,101 @@
+:root {
+  --success-bg: #d4edda;
+  --success-text: #155724;
+  --error-bg: #f8d7da;
+  --error-text: #721c24;
+  --info-bg: #d1ecf1;
+  --info-text: #0c5460;
+  --modal-bg: #fff;
+  --modal-shadow: rgba(0, 0, 0, 0.2);
+  --button-bg: #007bff;
+  --button-text: #fff;
+}
+
+.message-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.message-modal-content {
+  background-color: var(--modal-bg);
+  padding: 25px;
+  border-radius: 10px;
+  box-shadow: 0 5px 15px var(--modal-shadow);
+  max-width: 400px;
+  width: 90%;
+  text-align: center;
+}
+
+.message-alert {
+  padding: 15px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  border: 1px solid transparent;
+}
+
+.message-alert-success {
+  background-color: var(--success-bg);
+  border-color: #c3e6cb;
+}
+
+.message-alert-error {
+  background-color: var(--error-bg);
+  border-color: #f5c6cb;
+}
+
+.message-alert-info {
+  background-color: var(--info-bg);
+  border-color: #bee5eb;
+}
+
+.message-alert p {
+  margin: 0;
+  font-size: 1rem;
+  line-height: 1.5;
+}
+
+.message-alert .font-bold {
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.message-alert .text-green-700 {
+  color: var(--success-text);
+}
+
+.message-alert .text-red-700 {
+  color: var(--error-text);
+}
+
+.message-alert .text-blue-700 {
+  color: var(--info-text);
+}
+
+.message-modal-actions {
+  display: flex;
+  justify-content: center;
+}
+
+.message-button {
+  background-color: var(--button-bg);
+  color: var(--button-text);
+  padding: 10px 20px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
+}
+
+.message-button:hover {
+  background-color: #0056b3;
+}

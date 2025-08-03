@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import type { MenuItem } from '../../types/types';
 import Button from '../common/Button';
 import InputField from '../common/InputField';
+import './MenuSection.css';
 
 interface MenuSectionProps {
   menuItems: MenuItem[];
@@ -71,9 +72,9 @@ const MenuSection: React.FC<MenuSectionProps> = ({
   };
 
   return (
-    <div className="menu-section">
-      <h2 className="section-heading">Gerenciar Cardápio</h2>
-      <Button onClick={() => openModal()} className="mb-6">
+    <div className="menu-section-container">
+      <h2 className="menu-section-heading">Gerenciar Cardápio</h2>
+      <Button onClick={() => openModal()} className="add-item-btn">
         Adicionar Novo Item
       </Button>
 
@@ -84,7 +85,7 @@ const MenuSection: React.FC<MenuSectionProps> = ({
       ) : (
         <div className="menu-grid">
           {menuItems.map((item) => (
-            <div key={item._id} className="menu-item">
+            <div key={item._id} className="menu-item-card">
               <div>
                 {item.imageUrl ? (
                   <img src={item.imageUrl} alt={item.name} className="menu-item-image" />
@@ -95,16 +96,18 @@ const MenuSection: React.FC<MenuSectionProps> = ({
                     </svg>
                   </div>
                 )}
-                <h3 className="menu-item-name">{item.name}</h3>
-                <p className="menu-item-description">{item.description}</p>
-                <p className="menu-item-price">R$ {item.price.toFixed(2)}</p>
-                <p className="menu-item-category">Categoria: {item.category}</p>
+                <div className="menu-item-details">
+                  <h3 className="menu-item-name">{item.name}</h3>
+                  <p className="menu-item-description">{item.description}</p>
+                  <p className="menu-item-price">R$ {item.price.toFixed(2)}</p>
+                  <p className="menu-item-category">Categoria: {item.category}</p>
+                </div>
               </div>
               <div className="menu-item-actions">
-                <Button onClick={() => openModal(item)} className="btn-yellow btn-sm">
+                <Button onClick={() => openModal(item)} className="edit-btn">
                   Editar
                 </Button>
-                <Button onClick={() => onDeleteItem(item._id)} className="btn-red btn-sm">
+                <Button onClick={() => onDeleteItem(item._id)} className="delete-btn">
                   Excluir
                 </Button>
               </div>
@@ -132,10 +135,10 @@ const MenuSection: React.FC<MenuSectionProps> = ({
                 filePreview={menuItemImagePreview}
               />
               <div className="modal-actions">
-                <Button type="button" onClick={() => setShowModal(false)} className="btn-gray">
+                <Button type="button" onClick={() => setShowModal(false)} className="modal-cancel-btn">
                   Cancelar
                 </Button>
-                <Button type="submit" disabled={loading}>
+                <Button type="submit" className="modal-submit-btn" disabled={loading}>
                   {loading ? 'Salvando...' : 'Salvar'}
                 </Button>
               </div>

@@ -1,4 +1,5 @@
 import React from 'react';
+import '../../styles/Button.css';
 
 interface ButtonProps {
   onClick?: () => void;
@@ -8,12 +9,12 @@ interface ButtonProps {
   disabled?: boolean;
 }
 
-const Button: React.FC<ButtonProps> = ({ 
-  onClick, 
-  children, 
-  className = '', 
-  type = 'button', 
-  disabled = false 
+const Button: React.FC<ButtonProps> = ({
+  onClick,
+  children,
+  className = '',
+  type = 'button',
+  disabled = false
 }) => (
   <button
     type={type}

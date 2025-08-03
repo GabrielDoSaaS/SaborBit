@@ -3,8 +3,9 @@ import { useAuth } from '../auth/AuthContext';
 import InputField from '../common/InputField';
 import Button from '../common/Button';
 import type { Chef } from '../../types/types';
+import '../../styles/ProfileSection.css';
 
-const ProfileSection: React.FC<{ 
+const ProfileSection: React.FC<{
   chefData: Chef;
   setChefData: React.Dispatch<React.SetStateAction<Chef>>;
   loading: boolean;
@@ -13,12 +14,12 @@ const ProfileSection: React.FC<{
   profilePicturePreview: string;
   isEditing: boolean;
   setIsEditing: React.Dispatch<React.SetStateAction<boolean>>;
-}> = ({ 
-  chefData, 
-  setChefData, 
-  loading, 
-  onUpdateProfile, 
-  onFileChange, 
+}> = ({
+  chefData,
+  setChefData,
+  loading,
+  onUpdateProfile,
+  onFileChange,
   profilePicturePreview,
   isEditing,
   setIsEditing
@@ -31,8 +32,8 @@ const ProfileSection: React.FC<{
   const expirationDate = chefData.dataExpiracaoPlano ? new Date(chefData.dataExpiracaoPlano).toLocaleDateString('pt-BR') : 'N/A';
 
   return (
-    <div className="profile-section">
-      <h2 className="section-heading">Meu Perfil</h2>
+    <div className="profile-section-container">
+      <h2 className="profile-section-heading">Meu Perfil</h2>
       <div className="profile-grid">
         <div className="profile-avatar-container">
           <div className="profile-avatar">
@@ -62,7 +63,7 @@ const ProfileSection: React.FC<{
                 filePreview={profilePicturePreview}
               />
             ) : (
-              (chefData.profilePicture && <a href={chefData.profilePicture} target="_blank" rel="noopener noreferrer">Ver Imagem</a>) || 'N/A'
+              (chefData.profilePicture && <a href={chefData.profilePicture} target="_blank" rel="noopener noreferrer" className="profile-picture-link">Ver Imagem</a>) || 'N/A'
             )}
           </p>
           <p className={`profile-status ${isPlanActive ? 'profile-status-active' : 'profile-status-inactive'}`}>
@@ -73,15 +74,15 @@ const ProfileSection: React.FC<{
           <div className="profile-actions">
             {isEditing ? (
               <>
-                <Button onClick={onUpdateProfile} disabled={loading}>
+                <Button onClick={onUpdateProfile} disabled={loading} className="profile-save-btn">
                   {loading ? 'Salvando...' : 'Salvar Alterações'}
                 </Button>
-                <Button onClick={() => setIsEditing(false)} className="btn-gray">
+                <Button onClick={() => setIsEditing(false)} className="profile-cancel-btn">
                   Cancelar
                 </Button>
               </>
             ) : (
-              <Button onClick={() => setIsEditing(true)}>
+              <Button onClick={() => setIsEditing(true)} className="profile-edit-btn">
                 Editar Perfil
               </Button>
             )}

@@ -1,0 +1,46 @@
+:root {
+  --primary-purple: #6a0dad;
+  --secondary-purple: #8a2be2;
+  --light-purple: #f3e9ff;
+  --text-dark: #333;
+  --text-light: #fff;
+  --border-color: #ddd;
+}
+
+.tab-button {
+  background-color: transparent;
+  border: none;
+  padding: 12px 20px;
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--text-dark);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border-bottom: 3px solid transparent;
+  white-space: nowrap;
+}
+
+.tab-button:hover {
+  color: var(--secondary-purple);
+  border-bottom-color: var(--light-purple);
+}
+
+.tab-button-active {
+  color: var(--primary-purple);
+  border-bottom-color: var(--primary-purple);
+  font-weight: bold;
+}
+
+.tab-button-active:hover {
+  color: var(--primary-purple);
+  border-bottom-color: var(--primary-purple);
+}
+
+@media (max-width: 768px) {
+  .tab-button {
+    width: 100%;
+    text-align: center;
+    padding: 10px 15px;
+    font-size: 0.9rem;
+  }
+}

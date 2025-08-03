@@ -1,6 +1,7 @@
 import React from 'react';
 import type { Chef } from '../../types/types';
 import Button from '../common/Button';
+import '../../styles/PlansSection.css';
 
 interface PlansSectionProps {
   chefData: Chef;
@@ -13,8 +14,8 @@ const PlansSection: React.FC<PlansSectionProps> = ({ chefData, loading, onSubscr
   const expirationDate = chefData.dataExpiracaoPlano ? new Date(chefData.dataExpiracaoPlano).toLocaleDateString('pt-BR') : 'N/A';
 
   return (
-    <div className="plans-section">
-      <h2 className="section-heading">Meus Planos de Assinatura</h2>
+    <div className="plans-section-container">
+      <h2 className="plans-section-heading">Meus Planos de Assinatura</h2>
       <div className="plan-status-card">
         <p className={`plan-status-text ${isPlanActive ? 'plan-status-active' : 'plan-status-inactive'}`}>
           Status do Plano: {isPlanActive ? 'Ativo' : 'Inativo'}
@@ -36,7 +37,7 @@ const PlansSection: React.FC<PlansSectionProps> = ({ chefData, loading, onSubscr
             <li className="plan-feature-item"><span className="plan-feature-icon">&#10003;</span> Geração de QR Code</li>
             <li className="plan-feature-item"><span className="plan-feature-icon">&#10003;</span> Suporte Básico</li>
           </ul>
-          <Button onClick={() => onSubscribe('mensal')} disabled={loading} className="w-full">
+          <Button onClick={() => onSubscribe('mensal')} disabled={loading} className="plan-button">
             {loading ? 'Processando...' : 'Assinar Plano Mensal'}
           </Button>
         </div>
@@ -52,7 +53,7 @@ const PlansSection: React.FC<PlansSectionProps> = ({ chefData, loading, onSubscr
             <li className="plan-feature-item"><span className="plan-feature-icon">&#10003;</span> Novas funcionalidades exclusivas</li>
             <li className="plan-feature-item"><span className="plan-feature-icon">&#10003;</span> Renovação automática opcional</li>
           </ul>
-          <Button onClick={() => onSubscribe('anual')} disabled={loading} className="w-full btn-purple">
+          <Button onClick={() => onSubscribe('anual')} disabled={loading} className="plan-button plan-button-highlight">
             {loading ? 'Processando...' : 'Assinar Plano Anual'}
           </Button>
         </div>
