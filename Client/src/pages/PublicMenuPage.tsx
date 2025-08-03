@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import type { Chef, MenuItem, CartItem } from '../types/types';
 import InputField from '../components/common/InputField';
 import Button from '../components/common/Button';
+import '../styles/PublicMenuPage.css';
 
 interface PublicMenuPageProps {
   chefId: string;
@@ -70,12 +71,12 @@ const PublicMenuPage: React.FC<PublicMenuPageProps> = ({ chefId, showMessage }) 
           cartItem.menuItemId === item._id ? { ...cartItem, quantity: cartItem.quantity + 1 } : cartItem
         );
       } else {
-        return [...prevCart, { 
-          menuItemId: item._id, 
-          name: item.name, 
-          price: item.price, 
-          quantity: 1, 
-          observations: '' 
+        return [...prevCart, {
+          menuItemId: item._id,
+          name: item.name,
+          price: item.price,
+          quantity: 1,
+          observations: ''
         }];
       }
     });
@@ -112,7 +113,7 @@ const PublicMenuPage: React.FC<PublicMenuPageProps> = ({ chefId, showMessage }) 
   const handlePlaceOrder = async (e: React.FormEvent) => {
     e.preventDefault();
     setOrderLoading(true);
-    setWhatsappLink(''); // Reset link
+    setWhatsappLink('');
     try {
       const orderItems = cart.map(item => ({
         menuItemId: item.menuItemId,
@@ -141,7 +142,7 @@ const PublicMenuPage: React.FC<PublicMenuPageProps> = ({ chefId, showMessage }) 
       if (response.ok) {
         showMessage('Pedido realizado com sucesso!', 'success');
         setWhatsappLink(data.whatsappUrl);
-        setCart([]); // Limpa o carrinho
+        setCart([]);
         setShowOrderForm(false);
         setOrderFormData({ clientName: '', clientPhone: '', clientAddress: '', observations: '' });
       } else {
@@ -157,19 +158,19 @@ const PublicMenuPage: React.FC<PublicMenuPageProps> = ({ chefId, showMessage }) 
 
   if (loading) {
     return (
-      <div className="page-container">
-        <p className="loading-text">Carregando cardápio...</p>
+      <div className="public-loading-container">
+        <p className="public-loading-text">Carregando cardápio...</p>
       </div>
     );
   }
 
   if (error) {
     return (
-      <div className="error-page-container">
-        <div className="error-card">
-          <h2 className="error-heading">Erro ao Carregar Cardápio</h2>
-          <p className="error-message">{error}</p>
-          <p className="error-suggestion">Por favor, verifique o link ou tente novamente mais tarde.</p>
+      <div className="public-error-container">
+        <div className="public-error-card">
+          <h2 className="public-error-heading">Erro ao Carregar Cardápio</h2>
+          <p className="public-error-message">{error}</p>
+          <p className="public-error-suggestion">Por favor, verifique o link ou tente novamente mais tarde.</p>
         </div>
       </div>
     );
@@ -177,8 +178,8 @@ const PublicMenuPage: React.FC<PublicMenuPageProps> = ({ chefId, showMessage }) 
 
   if (!chefInfo) {
     return (
-      <div className="page-container">
-        <p className="loading-text">Chef/Restaurante não encontrado.</p>
+      <div className="public-loading-container">
+        <p className="public-loading-text">Chef/Restaurante não encontrado.</p>
       </div>
     );
   }
@@ -186,12 +187,16 @@ const PublicMenuPage: React.FC<PublicMenuPageProps> = ({ chefId, showMessage }) 
   return (
     <div className="public-menu-page">
       <header className="public-header">
-        <h1 className="public-restaurant-name">{chefInfo.restaurantName}</h1>
-        <p className="public-address">{chefInfo.address}</p>
-        <p className="public-phone">Telefone: {chefInfo.phone}</p>
-        {chefInfo.profilePicture && (
-          <img src={chefInfo.profilePicture} alt="Logo do Restaurante" className="public-logo" />
-        )}
+        <div className="public-header-content">
+          {chefInfo.profilePicture && (
+            <img src={chefInfo.profilePicture} alt="Logo do Restaurante" className="public-logo" />
+          )}
+          <div className="public-header-info">
+            <h1 className="public-restaurant-name">{chefInfo.restaurantName}</h1>
+            <p className="public-address">{chefInfo.address}</p>
+            <p className="public-phone">Telefone: {chefInfo.phone}</p>
+          </div>
+        </div>
       </header>
 
       <main className="public-main-grid">
@@ -203,7 +208,7 @@ const PublicMenuPage: React.FC<PublicMenuPageProps> = ({ chefId, showMessage }) 
             <div className="public-menu-grid">
               {menuItems.map((item) => (
                 <div key={item._id} className="public-menu-item">
-                  <div>
+                  <div className="public-menu-item-content">
                     {item.imageUrl ? (
                       <img src={item.imageUrl} alt={item.name} className="public-menu-item-image" />
                     ) : (
@@ -213,14 +218,18 @@ const PublicMenuPage: React.FC<PublicMenuPageProps> = ({ chefId, showMessage }) 
                         </svg>
                       </div>
                     )}
-                    <h3 className="public-menu-item-name">{item.name}</h3>
-                    <p className="public-menu-item-description">{item.description}</p>
-                    <p className="public-menu-item-price">R$ {item.price.toFixed(2)}</p>
-                    <p className="public-menu-item-category">Categoria: {item.category}</p>
+                    <div className="public-menu-item-details">
+                      <h3 className="public-menu-item-name">{item.name}</h3>
+                      <p className="public-menu-item-description">{item.description}</p>
+                      <p className="public-menu-item-category">Categoria: {item.category}</p>
+                    </div>
                   </div>
-                  <Button onClick={() => addToCart(item)} className="public-add-to-cart-btn">
-                    Adicionar ao Carrinho
-                  </Button>
+                  <div className="public-menu-item-footer">
+                    <p className="public-menu-item-price">R$ {item.price.toFixed(2)}</p>
+                    <Button onClick={() => addToCart(item)} className="public-add-to-cart-btn">
+                      Adicionar
+                    </Button>
+                  </div>
                 </div>
               ))}
             </div>
@@ -236,19 +245,19 @@ const PublicMenuPage: React.FC<PublicMenuPageProps> = ({ chefId, showMessage }) 
               <ul className="cart-items-list">
                 {cart.map((item) => (
                   <li key={item.menuItemId} className="cart-item">
-                    <div className="cart-item-details">
+                    <div className="cart-item-info">
                       <p className="cart-item-name">{item.name}</p>
-                      <p className="cart-item-price">R$ {item.price.toFixed(2)} x {item.quantity}</p>
-                      <InputField
-                        label="Observações"
-                        name={`observations-${item.menuItemId}`}
-                        type="text"
-                        placeholder="Observações do item (ex: sem cebola)"
-                        value={item.observations}
-                        onChange={(e) => updateCartItemObservations(item.menuItemId, e.target.value)}
-                        className="cart-item-observations-input"
-                      />
+                      <p className="cart-item-price">R$ {(item.price * item.quantity).toFixed(2)}</p>
                     </div>
+                    <InputField
+                      label="Observações"
+                      name={`observations-${item.menuItemId}`}
+                      type="text"
+                      placeholder="Sem cebola, bem passado..."
+                      value={item.observations}
+                      onChange={(e) => updateCartItemObservations(item.menuItemId, e.target.value)}
+                      className="cart-item-observations-input"
+                    />
                     <div className="cart-item-controls">
                       <button
                         onClick={() => updateCartItemQuantity(item.menuItemId, item.quantity - 1)}
@@ -273,12 +282,15 @@ const PublicMenuPage: React.FC<PublicMenuPageProps> = ({ chefId, showMessage }) 
                   </li>
                 ))}
               </ul>
-              <div className="cart-total">
-                Total: R$ {getTotalCartPrice().toFixed(2)}
+              <div className="cart-total-section">
+                <div className="cart-total">
+                  <span>Total:</span>
+                  <span className="cart-total-price">R$ {getTotalCartPrice().toFixed(2)}</span>
+                </div>
+                <Button onClick={() => setShowOrderForm(true)} className="public-checkout-btn">
+                  Finalizar Pedido
+                </Button>
               </div>
-              <Button onClick={() => setShowOrderForm(true)} className="public-checkout-btn">
-                Finalizar Pedido
-              </Button>
             </>
           )}
 
@@ -286,16 +298,16 @@ const PublicMenuPage: React.FC<PublicMenuPageProps> = ({ chefId, showMessage }) 
             <div className="modal-overlay">
               <div className="modal-content">
                 <h3 className="modal-heading">Seus Dados para o Pedido</h3>
-                <form onSubmit={handlePlaceOrder}>
+                <form onSubmit={handlePlaceOrder} className="modal-form">
                   <InputField label="Seu Nome" name="clientName" value={orderFormData.clientName} onChange={handleOrderFormChange} required />
                   <InputField label="Seu Telefone (WhatsApp)" name="clientPhone" value={orderFormData.clientPhone} onChange={handleOrderFormChange} placeholder="Ex: 5511999998888" required />
                   <InputField label="Seu Endereço (Opcional)" name="clientAddress" value={orderFormData.clientAddress} onChange={handleOrderFormChange} placeholder="Rua, número, bairro, cidade" />
                   <InputField label="Observações Gerais do Pedido (Opcional)" name="observations" value={orderFormData.observations} onChange={handleOrderFormChange} />
                   <div className="modal-actions">
-                    <Button type="button" onClick={() => setShowOrderForm(false)} className="btn-gray">
+                    <Button type="button" onClick={() => setShowOrderForm(false)} className="modal-cancel-btn">
                       Cancelar
                     </Button>
-                    <Button type="submit" disabled={orderLoading}>
+                    <Button type="submit" className="modal-submit-btn" disabled={orderLoading}>
                       {orderLoading ? 'Enviando...' : 'Enviar Pedido'}
                     </Button>
                   </div>
