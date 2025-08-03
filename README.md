@@ -34,10 +34,20 @@
 
 ```bash
 # Clone o repositório
-git clone https://github.com/seu-usuario/saborbit.git
+git clone https://github.com/GabrielDoSaaS/saborbit.git
 
-# Instale as dependências
-npm install
+# Instale as dependências do Front-end
+cd Client
+Npm Install
 
-# Inicie o servidor de desenvolvimento
-npm run dev
+# Inicie o Front-end em localhost
+Npm run dev
+
+# Instale as dependências do Back-end
+cd Server
+Npm Install
+
+# Inicie o servidor em localhost
+Node index.js
+
+
