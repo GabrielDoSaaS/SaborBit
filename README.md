@@ -51,7 +51,8 @@ npm install
 
 # Inicie o servidor em localhost
 node index.js
-```bash 
+
+```
 
 ## 📡 API Reference
 
