@@ -38,16 +38,16 @@ git clone https://github.com/GabrielDoSaaS/saborbit.git
 
 # Instale as dependências do Front-end
 cd Client
-Npm Install
+npm install
 
 # Inicie o Front-end em localhost
-Npm run dev
+npm run dev
 
 # Instale as dependências do Back-end
 cd Server
-Npm Install
+npm install
 
 # Inicie o servidor em localhost
-Node index.js
+node index.js
 
 
