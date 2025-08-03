@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useAuth } from '../components/auth/AuthContext';
 import TabButton from '../components/common/TabButton';
 import ProfileSection from '../components/dashboard/ProfileSection';
