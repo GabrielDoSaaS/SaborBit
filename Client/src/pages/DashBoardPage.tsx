@@ -7,12 +7,13 @@ import OrdersSection from '../components/dashboard/OrdersSection';
 import QrSection from '../components/dashboard/QrSection';
 import PlansSection from '../components/dashboard/PlansSection';
 import type { Chef, MenuItem, Order } from '../types/types';
+import '../styles/DashboardPage.css'; 
 
 const DashboardPage: React.FC<{ showMessage: (message: string, type: 'success' | 'error' | 'info') => void }> = ({ showMessage }) => {
   const { chef, updateChef } = useAuth();
   const [activeTab, setActiveTab] = useState<'profile' | 'menu' | 'orders' | 'qr' | 'plans'>('profile');
   const [loading, setLoading] = useState(false);
-  
+
   const [chefData, setChefData] = useState<Chef>(chef!);
   const [isEditingProfile, setIsEditingProfile] = useState(false);
   const [profilePicturePreview, setProfilePicturePreview] = useState(chef?.profilePicture || '');
@@ -36,7 +37,7 @@ const DashboardPage: React.FC<{ showMessage: (message: string, type: 'success' |
     if (!chef) return;
     setChefData(chef);
     setProfilePicturePreview(chef.profilePicture || '');
-    
+
     if (activeTab === 'menu') {
       fetchMenuItems();
     } else if (activeTab === 'orders') {
@@ -123,10 +124,10 @@ const DashboardPage: React.FC<{ showMessage: (message: string, type: 'success' |
       const response = await fetch(url, {
         method,
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ 
-          ...menuItemForm, 
+        body: JSON.stringify({
+          ...menuItemForm,
           price: parseFloat(menuItemForm.price),
-          chefId: chef?._id 
+          chefId: chef?._id
         }),
       });
       const data = await response.json();
@@ -173,7 +174,7 @@ const DashboardPage: React.FC<{ showMessage: (message: string, type: 'success' |
   const fetchOrders = async () => {
     setLoading(true);
     try {
-      const response = await fetch(`https://backend-saborbit.onrender.com/api/chefs/${chef?._id}/orders`);
+      const response = await fetch(`https://saborbit.onrender.com/api/chefs/${chef?._id}/orders`);
       const data = await response.json();
       if (response.ok) {
         setOrders(data.orders);
@@ -267,10 +268,14 @@ const DashboardPage: React.FC<{ showMessage: (message: string, type: 'success' |
 
   if (!chef) {
     return (
-      <div className="page-container">
-        <p className="text-gray-700 text-lg">Você precisa estar logado para acessar o Dashboard.</p>
+      <div className="dashboard-loading-container">
+        <p className="dashboard-loading-text">Você precisa estar logado para acessar o Dashboard.</p>
       </div>
     );
+  }
+
+  function setIsEditing(value: React.SetStateAction<boolean>): void {
+    setIsEditingProfile(value);
   }
 
   return (
@@ -287,64 +292,66 @@ const DashboardPage: React.FC<{ showMessage: (message: string, type: 'success' |
             <TabButton label="Planos" active={activeTab === 'plans'} onClick={() => setActiveTab('plans')} />
           </div>
 
-          {activeTab === 'profile' && (
-            <ProfileSection
-              chefData={chefData}
-              setChefData={setChefData}
-              loading={loading}
-              onUpdateProfile={handleUpdateProfile}
-              onFileChange={handleProfileFileChange}
-              profilePicturePreview={profilePicturePreview}
-              isEditing={isEditingProfile}
-              setIsEditing={setIsEditingProfile}
-            />
-          )}
+          <div className="tab-content">
+            {activeTab === 'profile' && (
+              <ProfileSection
+                chefData={chefData}
+                setChefData={setChefData}
+                loading={loading}
+                onUpdateProfile={handleUpdateProfile}
+                onFileChange={handleProfileFileChange}
+                profilePicturePreview={profilePicturePreview}
+                isEditing={isEditingProfile}
+                setIsEditing={setIsEditing}
+              />
+            )}
 
-          {activeTab === 'menu' && (
-            <MenuSection
-              menuItems={menuItems}
-              loading={loading}
-              onAddOrUpdateItem={handleAddOrUpdateMenuItem}
-              onDeleteItem={handleDeleteMenuItem}
-              menuItemForm={menuItemForm}
-              setMenuItemForm={setMenuItemForm}
-              onFileChange={handleMenuItemFileChange}
-              menuItemImagePreview={menuItemImagePreview}
-              currentMenuItem={currentMenuItem}
-              setCurrentMenuItem={setCurrentMenuItem}
-              showModal={showMenuItemModal}
-              setShowModal={setShowMenuItemModal}
-            />
-          )}
+            {activeTab === 'menu' && (
+              <MenuSection
+                menuItems={menuItems}
+                loading={loading}
+                onAddOrUpdateItem={handleAddOrUpdateMenuItem}
+                onDeleteItem={handleDeleteMenuItem}
+                menuItemForm={menuItemForm}
+                setMenuItemForm={setMenuItemForm}
+                onFileChange={handleMenuItemFileChange}
+                menuItemImagePreview={menuItemImagePreview}
+                currentMenuItem={currentMenuItem}
+                setCurrentMenuItem={setCurrentMenuItem}
+                showModal={showMenuItemModal}
+                setShowModal={setShowMenuItemModal}
+              />
+            )}
 
-          {activeTab === 'orders' && (
-            <OrdersSection
-              orders={orders}
-              loading={loading}
-              onUpdateStatus={handleUpdateOrderStatus}
-              onViewDetails={openOrderDetailsModal}
-              currentOrder={currentOrder}
-              showModal={showOrderModal}
-              setShowModal={setShowOrderModal}
-            />
-          )}
+            {activeTab === 'orders' && (
+              <OrdersSection
+                orders={orders}
+                loading={loading}
+                onUpdateStatus={handleUpdateOrderStatus}
+                onViewDetails={openOrderDetailsModal}
+                currentOrder={currentOrder}
+                showModal={showOrderModal}
+                setShowModal={setShowOrderModal}
+              />
+            )}
 
-          {activeTab === 'qr' && (
-            <QrSection
-              qrCodeUrl={qrCodeUrl}
-              loading={qrLoading}
-              chefId={chef._id}
-              onGenerateQr={generateQrCode}
-            />
-          )}
+            {activeTab === 'qr' && (
+              <QrSection
+                qrCodeUrl={qrCodeUrl}
+                loading={qrLoading}
+                chefId={chef._id}
+                onGenerateQr={generateQrCode}
+              />
+            )}
 
-          {activeTab === 'plans' && (
-            <PlansSection
-              chefData={chefData}
-              loading={loading}
-              onSubscribe={handleSubscribe}
-            />
-          )}
+            {activeTab === 'plans' && (
+              <PlansSection
+                chefData={chefData}
+                loading={loading}
+                onSubscribe={handleSubscribe}
+              />
+            )}
+          </div>
         </div>
       </div>
     </div>
