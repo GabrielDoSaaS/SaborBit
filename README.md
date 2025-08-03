@@ -52,4 +52,32 @@ npm install
 # Inicie o servidor em localhost
 node index.js
 
+## 📡 API Reference
+
+### Autenticação
+`POST /api/loginChef`
+```json
+// Request
+{
+  "email": "restaurante@exemplo.com",
+  "password": "senha123"
+}
+
+// Response (200)
+{
+  message: "Login successful",
+  chef: {
+    name: string;
+    email: string;
+    phone: string;
+    address: string;
+    restaurantName: string;
+    planoAtivo: boolean;
+    dataExpiracaoPlano: Date;
+    createdAt: Date;
+    profilePicture?: string | undefined;
+    qrCodeUrl?: string | undefined;
+    _id: Types.ObjectId;
+  }
+}
 
