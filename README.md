@@ -1,6 +1,7 @@
 # SaborBit 🍽️
 
 **SaborBit** é um SaaS dedicado a ajudar restaurantes a terem seu próprio cardápio online através de QR Codes e facilitar pedidos via WhatsApp.
+
 **O projeto está no ar** acesse:  https://saborbit-1.onrender.com/
 
 ## ✨ Funcionalidades
