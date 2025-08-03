@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import InputField from '../components/common/InputField';
 import Button from '../components/common/Button';
+import '../styles/RegisterPage.css'; 
 
 interface RegisterPageProps {
   navigate: (path: string) => void;
@@ -66,59 +67,59 @@ const RegisterPage: React.FC<RegisterPageProps> = ({ navigate, showMessage }) =>
   };
 
   return (
-    <div className="page-container">
-      <div className="form-card">
-        <h2 className="form-heading">Registrar Chef</h2>
-        <form onSubmit={handleSubmit}>
-          <InputField 
-            label="Nome Completo" 
-            name="name" 
-            value={formData.name} 
-            onChange={handleChange} 
-            placeholder="Seu nome" 
-            required 
+    <div className="register-page-container">
+      <div className="register-card">
+        <h2 className="register-title">Registrar Chef</h2>
+        <form onSubmit={handleSubmit} className="register-form">
+          <InputField
+            label="Nome Completo"
+            name="name"
+            value={formData.name}
+            onChange={handleChange}
+            placeholder="Seu nome"
+            required
           />
-          <InputField 
-            label="Email" 
-            type="email" 
-            name="email" 
-            value={formData.email} 
-            onChange={handleChange} 
-            placeholder="seu@email.com" 
-            required 
+          <InputField
+            label="Email"
+            type="email"
+            name="email"
+            value={formData.email}
+            onChange={handleChange}
+            placeholder="seu@email.com"
+            required
           />
-          <InputField 
-            label="Senha" 
-            type="password" 
-            name="password" 
-            value={formData.password} 
-            onChange={handleChange} 
-            placeholder="********" 
-            required 
+          <InputField
+            label="Senha"
+            type="password"
+            name="password"
+            value={formData.password}
+            onChange={handleChange}
+            placeholder="********"
+            required
           />
-          <InputField 
-            label="Telefone (WhatsApp)" 
-            name="phone" 
-            value={formData.phone} 
-            onChange={handleChange} 
-            placeholder="Ex: 5511999998888" 
-            required 
+          <InputField
+            label="Telefone (WhatsApp)"
+            name="phone"
+            value={formData.phone}
+            onChange={handleChange}
+            placeholder="Ex: 5511999998888"
+            required
           />
-          <InputField 
-            label="Endereço" 
-            name="address" 
-            value={formData.address} 
-            onChange={handleChange} 
-            placeholder="Rua, número, bairro, cidade" 
-            required 
+          <InputField
+            label="Endereço"
+            name="address"
+            value={formData.address}
+            onChange={handleChange}
+            placeholder="Rua, número, bairro, cidade"
+            required
           />
-          <InputField 
-            label="Nome do Restaurante" 
-            name="restaurantName" 
-            value={formData.restaurantName} 
-            onChange={handleChange} 
-            placeholder="Nome do seu estabelecimento" 
-            required 
+          <InputField
+            label="Nome do Restaurante"
+            name="restaurantName"
+            value={formData.restaurantName}
+            onChange={handleChange}
+            placeholder="Nome do seu estabelecimento"
+            required
           />
           <InputField
             label="Foto de Perfil (Opcional)"
@@ -127,12 +128,12 @@ const RegisterPage: React.FC<RegisterPageProps> = ({ navigate, showMessage }) =>
             onFileChange={handleFileChange}
             filePreview={profilePicturePreview}
           />
-          <Button type="submit" className="w-full mt-6" disabled={loading}>
+          <Button type="submit" className="register-button" disabled={loading}>
             {loading ? 'Registrando...' : 'Registrar'}
           </Button>
         </form>
-        <p className="form-footer-text">
-          Já tem uma conta? <a href="/login" className="form-footer-link">Faça Login aqui</a>
+        <p className="register-footer-text">
+          Já tem uma conta? <a href="/login" className="register-link">Faça Login aqui</a>
         </p>
       </div>
     </div>
