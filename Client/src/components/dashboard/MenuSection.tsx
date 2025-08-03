@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import type { MenuItem } from '../../types/types';
 import Button from '../common/Button';
 import InputField from '../common/InputField';
-import './MenuSection.css';
+import '../../styles/MenuSection.css';
 
 interface MenuSectionProps {
   menuItems: MenuItem[];
