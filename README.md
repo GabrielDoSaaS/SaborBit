@@ -220,7 +220,96 @@ node index.js
   }
  }
 
+// Response (500)
+{ "message": "Erro ao atualizar chef", "error": "error.message" }
+
 ```
+
+`POST /chefs/:chefId/menuItems` 
+```json
+// Request
+{
+  "chefId":"your-chef-_id",
+  "name": "name_item",
+  "description": "description item",
+  "price": "price-product",
+  "category": "category",
+  "imageUrl": "imageUrl"
+}
+
+// Response (200)
+{
+  "message": "Item do cardápio criado com sucesso",
+  "item": {
+    "chefId":"your-chef-_id",
+    "name": "name_item",
+    "description": "description item",
+    "price": "price-product",
+    "category": "category",
+    "imageUrl": "imageUrl"
+  }
+}
+
+// Response (500)
+{
+  "message": "Erro interno do servidor",
+  "error": "error.message"
+}
+
+```
+
+`GET /chefs/:chefId/menuItems`
+```json
+
+// Request
+{
+  ChefID
+}
+
+//Response (200)
+
+{
+  [
+    {
+      "chefId":"your-chef-_id",
+      "name": "name_item",
+      "description": "description item",
+      "price": "price-product",
+      "category": "category",
+      "imageUrl": "imageUrl"
+    }
+  ],
+  [
+    {
+      "chefId":"your-chef-_id",
+      "name": "name_item",
+      "description": "description item",
+      "price": "price-product",
+      "category": "category",
+      "imageUrl": "imageUrl"
+    }
+  ],
+  [
+    {
+      "chefId":"your-chef-_id",
+      "name": "name_item",
+      "description": "description item",
+      "price": "price-product",
+      "category": "category",
+      "imageUrl": "imageUrl"
+    }
+  ]
+}
+
+// Response (500)
+{
+  "message": "Erro interno do servidor",
+  "error": "error.message"
+}
+
+```
+
+
 
 
 
