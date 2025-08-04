@@ -124,7 +124,7 @@ node index.js
 }
 
 ```
-
+### Rotas que geram links de checkout para pagamento de planos recorrentes
 `POST /api/planMensal`
 
 ```json
@@ -142,6 +142,86 @@ node index.js
 {
   "message": "Internal server error"
 }
+
+```
+
+`POST /api/planAnual`
+
+```json
+// Request
+{
+  "emailChef": "your-email@gmail.com",
+}
+
+// Response (200)
+{
+  "linkCheckout": "https://www.mercadopago.com.br/checkout/v1/redirect?pref_id=123456789-9876-4321-abcd-efg123456789"
+}
+
+// Response (500)
+{
+  "message": "Internal server error"
+}
+
+```
+
+### Rotas que operam diretamente com o modelo de Chef
+`GET /chefs/:chefId`
+```json
+
+// Response (200)
+{
+  "chef": {
+    "name": "string",
+    "email": "string",
+    "phone": "string",
+    "address": "string",
+    "restaurantName": "string",
+    "planoAtivo": "boolean",
+    "dataExpiracaoPlano":"Date",
+    "createdAt": "Date",
+    "profilePicture"?: "string" | "undefined",
+    "qrCodeUrl"?: "string" | "undefined",
+    "_id": Types.ObjectId
+  }
+}
+
+// Response (500)
+
+{
+  "message": "Erro ao buscar chef",
+  "error": "error.message"
+}
+
+```
+`PUT /chefs/:chefId`
+```json
+// Request
+{
+  "email": "your-email@gmail.com",
+  "password": "your-password",
+  "updateData": {
+      "name": "your name",
+      "email": "restaurante@exemplo.com",
+      "password": "senha123",
+      "phone": "your phone",
+      "address": "your address"
+  }
+}
+
+// Response (200)
+{
+  "message": "Informações do chef atualizadas com sucesso!",
+  {
+      "name": "your name",
+      "email": "restaurante@exemplo.com",
+      "phone": "your phone",
+      "address": "your address"
+  }
+ }
+
+```
+
 
 
 
