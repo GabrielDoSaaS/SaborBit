@@ -32,6 +32,22 @@
 - ![Mercado Pago](https://img.shields.io/badge/-Mercado_Pago-00B1EA)
 - ![WhatsApp](https://img.shields.io/badge/-WhatsApp-25D366?logo=whatsapp&logoColor=white)
 
+## Representação da tela inicial do projeto
+<img width="1633" height="916" alt="Captura de tela 2025-08-03 233926" src="https://github.com/user-attachments/assets/3c00e3fa-df9f-405f-a9d2-3791dc9d9203" />
+
+## Tela de Login
+<img width="1064" height="726" alt="Captura de tela 2025-08-03 234255" src="https://github.com/user-attachments/assets/092f1564-f2f9-4808-a84a-dad12f1eacec" />
+
+## Representação da Dashboard
+<img width="1777" height="887" alt="Captura de tela 2025-08-03 234615" src="https://github.com/user-attachments/assets/da89005e-c51e-4770-9bf6-0e9b11bcd700" />
+
+## Representação da apresentação dos planos
+<img width="1503" height="721" alt="Captura de tela 2025-08-03 234724" src="https://github.com/user-attachments/assets/ee9f1319-d43f-451a-8ce8-1e8e263e588e" />
+
+## Representação do QRCode gerado para cardápio
+<img width="936" height="585" alt="image" src="https://github.com/user-attachments/assets/99648043-657a-4f84-ba5a-d323fb172f77" />
+
+
 ## 🛠️ Instalação na máquina
 
 ```bash
@@ -308,13 +324,72 @@ node index.js
 }
 
 ```
+### Rotas que operam diretamente com o modelo de Menu
 
+`DELETE /menuItems/:itemId`
+```json
+// Request
+{
+  "itemId"
+}
 
+// Response (200)
+{
+  "message": "Item do cardápio deletado com sucesso."
+}
 
+// Response (404)
+{
+  "message": "Item do cardápio não encontrado."
+}
 
+// Response (500)
 
+{
+  "message": "Erro interno do servidor", "error: error.message"
+}
 
+```
 
+`GET /menuItems/:itemId`
+```json
+// Response (200)
+{
+    "name": "string",
+    "createdAt": "Date",
+    "chef": "Types.ObjectId",
+    "price": "number",
+    "isAvailable": "boolean",
+    "description": "string",
+    "category": "string" ,
+    "imageUrl": "string" ,
+}
 
+// Response (404)
+{ "message": "Item do cardápio não encontrado."}
 
+// Response (500)
+{ "message": "Erro interno do servidor", "error: error.message" }
+
+```
+
+`PUT /menuItems/:itemId`
+```json
+
+// Response (200)
+{
+  "message": "Item do cardápio atualizado com sucesso",
+  "item": "updatedItem"
+}
+
+// Response (500)
+{
+  "message": "Erro interno do servidor",
+  "error": "error.message"
+}
+
+// Response (404)
+{
+  "message": "Item do cardápio não encontrado."
+}
 
