@@ -2,7 +2,7 @@
 
 **SaborBit** é um SaaS dedicado a ajudar restaurantes a terem seu próprio cardápio online através de QR Codes e facilitar pedidos via WhatsApp.
 
-**O projeto está no ar** acesse:  https://saborbit-1.onrender.com/
+**O projeto está no ar,** acesse:  https://saborbit-1.onrender.com/
 
 ## ✨ Funcionalidades
 
@@ -67,20 +67,25 @@ node index.js
 
 // Response (200)
 {
-  message: "Login successful",
-  chef: {
-    "name": string;
-    "email": string;
-    "phone": string;
-    "address": string;
-    "restaurantName": string;
-    "planoAtivo": boolean;
-    "dataExpiracaoPlano": Date;
-    "createdAt": Date;
-    "profilePicture"?: string | undefined;
-    "qrCodeUrl"?: string | undefined;
-    _id: Types.ObjectId;
+ "message": "Login successful",
+  "chef": {
+    "name": "string",
+    "email": "string",
+    "phone": "string",
+    "address": "string",
+    "restaurantName": "string",
+    "planoAtivo": "boolean",
+    "dataExpiracaoPlano":"Date",
+    "createdAt": "Date",
+    "profilePicture"?: "string" | "undefined",
+    "qrCodeUrl"?: "string" | "undefined",
+    "_id": Types.ObjectId
   }
+}
+
+// Response (500)
+{
+  "message": "Internal server error"
 }
 
 ```
@@ -94,5 +99,53 @@ node index.js
   "phone": "your phone",
   "address": "your address"
 }
+
+// Response (200)
+{
+ "message": "Chef registered successfully",
+  "chef": {
+    "name": "string",
+    "email": "string",
+    "phone": "string",
+    "address": "string",
+    "restaurantName": "string",
+    "planoAtivo": "boolean",
+    "dataExpiracaoPlano":"Date",
+    "createdAt": "Date",
+    "profilePicture"?: "string" | "undefined",
+    "qrCodeUrl"?: "string" | "undefined",
+    "_id": Types.ObjectId
+  }
+}
+
+// Response (500)
+{
+  "message": "Internal server error"
+}
+
+```
+
+`POST /api/planMensal`
+
+```json
+// Request
+{
+  "emailChef": "your-email@gmail.com",
+}
+
+// Response (200)
+{
+  "linkCheckout": "https://www.mercadopago.com.br/checkout/v1/redirect?pref_id=123456789-9876-4321-abcd-efg123456789"
+}
+
+// Response (500)
+{
+  "message": "Internal server error"
+}
+
+
+
+
+
 
 
